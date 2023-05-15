@@ -1,8 +1,10 @@
 import { auth, googleProvider } from "../config/firebase.js";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-export const Auth = () => {
+export const Auth2 = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -48,23 +50,30 @@ export const Auth = () => {
         alert("email: " + email);
         alert("password: " + password);
       };
-
       //
     return (
-        <div>
-            <h1>bem vindo: {auth?.currentUser?.email}</h1>
-            <input 
-            placeholder="Email..."
-            onChange={(e) => setEmail(e.target.value)}
-            />
-            <input 
-            placeholder="Password..."
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={signIn}>Sign In</button>
-            <button onClick={signInWithGoogle}> Sign In With Google</button>
-            <button onClick={logout}>Log Out</button>
-        </div>
+      <div>      
+        <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+    </div>
+
     );
 };
